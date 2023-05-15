@@ -3,7 +3,7 @@
     <v-card-title class="font-weight-black text-center">Create Account</v-card-title>
     <!-- <v-card-subtitle class="text-center">Login to continue</v-card-subtitle> -->
     <v-card-text>
-      <v-form @submit.prevent>
+      <v-form @submit.prevent="handleSubmit">
         <v-row dense>
           <v-col cols="12">
             <v-text-field v-model="form.name" color="primary" label="Full name" />
@@ -21,7 +21,7 @@
             <v-text-field v-model="form.referral" color="primary" label="Referral ID" />
           </v-col>
           <v-col cols="12">
-            <v-btn size="large" block flat color="primary" class="mb-3">Sign up</v-btn>
+            <v-btn size="large" type="submit" block :loading="loading" flat color="primary" class="mb-3">Sign up</v-btn>
             <p>Already have an account yet? <nuxt-link class="text-primary" to="/login">Sign in</nuxt-link></p>
           </v-col>
         </v-row>
@@ -30,7 +30,22 @@
   </v-card>
 </template>
 
-<script setup lang="ts">
+<script setup>
 definePageMeta({ layout: "auth" });
+
+const { $api } = useNuxtApp();
+
 const form = ref({ email: "", password: "", name: "", coupon: "", referral: "" });
+const loading = ref(false);
+
+const handleSubmit = async () => {
+  try {
+    loading.value = true;
+    await $api.register(form.value);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    loading.value = false;
+  }
+};
 </script>
