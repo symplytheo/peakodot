@@ -1,0 +1,5 @@
+$font: "Mulish", sans-serif;
+
+@use "vuetify" with (
+  $body-font-family: $font
+);
