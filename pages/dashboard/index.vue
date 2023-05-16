@@ -1,6 +1,10 @@
 <template>
-  <div class="pa-4">
-    <h2>Dashboard</h2>
+  <div>
+    <h3 class="font-weight-black text-primary text-h6 mb-6">
+      <v-icon color="primary" :icon="mdiViewDashboardOutline" />
+      Overview
+    </h3>
+ 
     <v-btn color="orange-darken-2" @click="$api.logUser()"> Open Snackbar </v-btn>
 
     <v-btn color="primary" @click="$store.increment()" class="mx-4"> + </v-btn>
@@ -24,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { mdiCheckCircle, mdiClose } from "@mdi/js";
+import { mdiCheckCircle, mdiClose, mdiViewDashboardOutline } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
 
