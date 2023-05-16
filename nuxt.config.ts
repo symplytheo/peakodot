@@ -13,6 +13,7 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify())
       );
     },
+    "@pinia/nuxt",
   ],
   app: {
     head: {

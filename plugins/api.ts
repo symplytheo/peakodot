@@ -1,19 +1,22 @@
 import axios, { AxiosInstance } from "axios";
 import ErrorHandler from "~/lib/errorhandler";
+import { useToastStore } from "~/store/toast";
 
 class ApiRequests {
   instance: AxiosInstance;
+  errorhandler;
+  toast;
   // // Initializer
   constructor(XMLHttpRequest: AxiosInstance) {
-    // this.store = store; // app store to dispatch snackbar for notifications
     this.instance = XMLHttpRequest; // can be axios or ES6 fetch module
+    this.errorhandler = ErrorHandler;
+    this.toast = useToastStore();
   }
 
+  // Display error message in a snackbar
   processError(error: any) {
-    const text = ErrorHandler(error);
-    alert(text);
-    // Display error message in a snackbar
-    // this.store.commit("snackbar/show", { icon: "error", text });
+    const text = this.errorhandler(error);
+    this.toast.error(text);
   }
 
   // ================
@@ -53,7 +56,8 @@ class ApiRequests {
   }
 
   logUser() {
-    console.log({ name: "Jane Doe", email: "anything@goes.com" });
+    this.toast.success("It fucking worked!");
+    // console.log({ name: "Jane Doe", email: "anything@goes.com" });
   }
 }
 
