@@ -32,14 +32,28 @@
     </v-app-bar>
 
     <v-main>
-      <slot />
+      <v-container>
+        <slot />
+      </v-container>
     </v-main>
+
+    <!--  -->
+    <app-snackbar />
   </v-app>
 </template>
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
-import { mdiAccount, mdiRobotOutline, mdiController, mdiAccountMultiplePlus, mdiCashMultiple } from "@mdi/js";
+import {
+  mdiAccount,
+  mdiRobotOutline,
+  mdiController,
+  mdiAccountMultiplePlus,
+  mdiShareVariant,
+  mdiCashMultiple,
+  mdiViewDashboardOutline,
+  mdiGoogleAds,
+} from "@mdi/js";
 
 const display = useDisplay();
 
@@ -47,9 +61,11 @@ const val = display.smAndDown ? false : true;
 const drawer = ref(val);
 
 const items = [
-  { title: "Overview", props: { prependIcon: mdiAccount, to: "/dashboard" } },
+  { title: "Overview", props: { prependIcon: mdiViewDashboardOutline, to: "/dashboard" } },
   { title: "Minting Bot", props: { prependIcon: mdiRobotOutline, to: "/dashboard/minting" } },
-  { title: "NFT Games", props: { prependIcon: mdiController, to: "/dashboard/nftgames" } },
+  { title: "NFT Games", props: { prependIcon: mdiController, to: "/dashboard/nft-games" } },
+  { title: "Share & Earn", props: { prependIcon: mdiShareVariant, to: "/dashboard/share-earn" } },
+  { title: "Digital Ads", props: { prependIcon: mdiGoogleAds, to: "/dashboard/digital-ads" } },
   { title: "Referrals", props: { prependIcon: mdiAccountMultiplePlus, to: "/dashboard/referrals" } },
   { title: "Withdrawals", props: { prependIcon: mdiCashMultiple, to: "/dashboard/withdrawals" } },
   { title: "Profile", props: { prependIcon: mdiAccount, to: "/dashboard/me" } },

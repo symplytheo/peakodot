@@ -16,5 +16,8 @@
         </v-row>
       </v-container>
     </v-sheet>
+
+    <!--  -->
+    <app-snackbar />
   </v-app>
 </template>

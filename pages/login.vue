@@ -24,9 +24,9 @@
   </v-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 definePageMeta({ layout: "auth" });
-const { $api } = useNuxtApp();
+const { $api, $toast } = useNuxtApp();
 
 const form = ref({ email: "", password: "" });
 const loading = ref(false);
@@ -34,7 +34,8 @@ const loading = ref(false);
 const handleSubmit = async () => {
   try {
     loading.value = true;
-    await $api.login(form.value);
+    const data = await $api.login(form.value);
+    $toast.success('User authenticated successfully')
   } catch (error) {
     console.log(error);
   } finally {
