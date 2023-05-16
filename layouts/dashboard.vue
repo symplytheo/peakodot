@@ -31,7 +31,7 @@
       </v-menu>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="bg-grey-lighten-5">
       <v-container>
         <slot />
       </v-container>
