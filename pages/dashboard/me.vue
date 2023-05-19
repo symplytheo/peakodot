@@ -94,7 +94,7 @@
           <v-card-title class="subtitle-1 font-weight-bold"> Change Password </v-card-title>
           <v-card-text>
             <v-form v-model="isValid.password" @submit.prevent="changePassword">
-              <v-row no-gutters justify="center">
+              <v-row dense justify="center">
                 <v-col cols="12">
                   <v-text-field
                     v-model="password.old"
@@ -109,10 +109,12 @@
                     v-model="password.new"
                     :type="show ? 'text' : 'password'"
                     label="New Password"
-                    :append-inner-icon="show ? mdiEyeOff : mdiEye"
                     :rules="[(v) => !!v || 'New password is required']"
-                    @click.append="show = !show"
-                  />
+                  >
+                    <template #append-inner>
+                      <v-icon @click="show = !show" :icon="show ? mdiEyeOff : mdiEye" />
+                    </template>
+                  </v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
@@ -123,16 +125,18 @@
                       (v) => !!v || 'Confirm password is required',
                       (v) => v === password.new || 'Confirm password does not match',
                     ]"
-                    :append-icon-inner="show ? mdiEyeOff : mdiEye"
-                    @click.append="show = !show"
-                  />
+                  >
+                    <template #append-inner>
+                      <v-icon @click="show = !show" :icon="show ? mdiEyeOff : mdiEye" />
+                    </template>
+                  </v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-btn
                     type="submit"
                     color="primary"
                     block
-                    x-large
+                    size="large"
                     depressed
                     :loading="loading.password"
                     :disabled="!isValid.password"
