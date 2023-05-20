@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiGoogleAds" />
-      Digital Ads
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiGoogleAds" />
+      <h3 class="font-weight-black text-primary text-h6">Digital Ads</h3>
+    </div>
 
     <v-card flat height="50vh">
       <v-row class="fill-height text-center" justify="center" align="center">
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { mdiGoogleAds } from '@mdi/js';
+import { mdiGoogleAds } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
 </script>

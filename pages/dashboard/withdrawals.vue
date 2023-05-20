@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiCashMultiple" />
-      Withdrawals
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiCashMultiple" />
+      <h3 class="font-weight-black text-primary text-h6">Withdrawals</h3>
+    </div>
 
     <v-row>
       <v-col cols="12" md="7" order="2" order-md="1">
@@ -52,14 +52,6 @@
         </v-card>
       </v-col>
 
-      <!-- <v-col cols="12" md="5" order="1" order-md="2">
-        <dashboard-stats-card title="Balance" :value="`$ ${balance}`" :icon="mdiCash" />
-        <br />
-        <dashboard-stats-card title="Last Withdrawal" :value="`$ ${last_withdrawal}`" :icon="mdiCashRefund" />
-        <br />
-        <dashboard-stats-card title="Total Withdrawal" :value="`$ ${total_withdrawals}`" :icon="mdiCashMultiple" />
-      </v-col> -->
-
       <v-col cols="12" order="3" class="mt-8">
         <v-card>
           <v-card-title class="subtitle-1 font-weight-bold pb-0"> Withdrawal History </v-card-title>
@@ -69,7 +61,7 @@
           <v-card-text>
             <v-text-field
               v-model="search"
-              :append-icon="mdiMagnify"
+              :append-inner-icon="mdiMagnify"
               label="Search"
               single-line
               hide-details
@@ -83,7 +75,6 @@
               :headers="headers"
               :items="desserts"
               item-value="name"
-              class="elevation-1"
             ></v-data-table>
           </v-card-text>
         </v-card>
@@ -125,7 +116,7 @@ const desserts = [
     name: "Frozen Yogurt",
     calories: 159,
     fat: 6.0,
-    status: 'Success',
+    status: "Success",
     protein: 4.0,
     iron: "1",
   },
@@ -133,7 +124,7 @@ const desserts = [
     name: "Jelly bean",
     calories: 375,
     fat: 0.0,
-    status: 'Failed',
+    status: "Failed",
     protein: 0.0,
     iron: "0",
   },
@@ -141,7 +132,7 @@ const desserts = [
     name: "KitKat",
     calories: 518,
     fat: 26.0,
-    status: 'Pending',
+    status: "Pending",
     protein: 7,
     iron: "6",
   },
@@ -149,7 +140,7 @@ const desserts = [
     name: "Eclair",
     calories: 262,
     fat: 16.0,
-    status: 'Success',
+    status: "Success",
     protein: 6.0,
     iron: "7",
   },
@@ -157,7 +148,7 @@ const desserts = [
     name: "Gingerbread",
     calories: 356,
     fat: 16.0,
-    status: 'Success',
+    status: "Success",
     protein: 3.9,
     iron: "16",
   },
@@ -165,7 +156,7 @@ const desserts = [
     name: "Ice cream sandwich",
     calories: 237,
     fat: 9.0,
-    status: 'Success',
+    status: "Success",
     protein: 4.3,
     iron: "1",
   },
@@ -173,7 +164,7 @@ const desserts = [
     name: "Lollipop",
     calories: 392,
     fat: 0.2,
-    status: 'Success',
+    status: "Success",
     protein: 0,
     iron: "2",
   },
@@ -181,7 +172,7 @@ const desserts = [
     name: "Cupcake",
     calories: 305,
     fat: 3.7,
-    status: 'Failed',
+    status: "Failed",
     protein: 4.3,
     iron: "8",
   },
@@ -189,7 +180,7 @@ const desserts = [
     name: "Honeycomb",
     calories: 408,
     fat: 3.2,
-    status: 'Success',
+    status: "Success",
     protein: 6.5,
     iron: "45",
   },
@@ -197,13 +188,13 @@ const desserts = [
     name: "Donut",
     calories: 452,
     fat: 25.0,
-    status: 'Failed',
+    status: "Failed",
     protein: 4.9,
     iron: "22",
   },
 ];
 
-const isValid = ref(false); 
+const isValid = ref(false);
 const loading = ref(false);
 const refreshing = ref(false);
 const success = ref(false);

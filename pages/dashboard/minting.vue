@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiRobotOutline" />
-      Minting Bot
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiRobotOutline" />
+      <h3 class="font-weight-black text-primary text-h6">Minting Bot</h3>
+    </div>
 
     <v-row class="mb-8">
       <v-col cols="12" md="7">
@@ -22,7 +22,7 @@
           </v-card-text>
           <p v-if="minting" class="text-error text-subtitle-2">
             Minting in Progress! <br />
-            Do not refresh or leave this page to avoid error
+            Do not refresh or leave this page!
           </p>
           <v-card-actions class="py-6 px-6">
             <v-btn variant="flat" color="primary" block :disabled="minted || minting" size="large" @click="handleMint">
@@ -35,7 +35,7 @@
         <v-card class="mb-6">
           <v-card-title>Today's Mint</v-card-title>
           <v-card-text>
-            <p class="text-h5 font-weight-black mb-3">$ {{ minted ? 0.65 : 0.00 }}</p>
+            <p class="text-h5 font-weight-black mb-3">$ {{ minted ? 0.65 : 0.0 }}</p>
             <span class="caption">
               Minted: <b>{{ minted ? "Just now" : "Nil" }}</b>
             </span>
@@ -51,36 +51,33 @@
       </v-col>
     </v-row>
 
-    <v-container>
-      <v-row>
-        <v-col cols="12">
-          <v-card>
-            <v-card-title class="subtitle-1 font-weight-bold pb-0"> Mint History </v-card-title>
-            <v-card-subtitle> List of your mint results so far. Sorted from most recent to first. </v-card-subtitle>
-            <v-card-text>
-              <v-text-field
-                v-model="search"
-                :append-icon="mdiMagnify"
-                label="Search"
-                single-line
-                hide-details
-                class="ml-auto"
-                style="max-width: 300px"
-              ></v-text-field>
-            </v-card-text>
-            <v-card-text>
-              <v-data-table
-                v-model:items-per-page="itemsPerPage"
-                :headers="headers"
-                :items="desserts"
-                item-value="name"
-                class="elevation-0"
-              ></v-data-table>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-card-title class="subtitle-1 font-weight-bold pb-0"> Mint History </v-card-title>
+          <v-card-subtitle> List of your mint results so far. Sorted from most recent to first. </v-card-subtitle>
+          <v-card-text>
+            <v-text-field
+              v-model="search"
+              :append-inner-icon="mdiMagnify"
+              label="Search"
+              single-line
+              hide-details
+              class="ml-auto"
+              style="max-width: 300px"
+            ></v-text-field>
+          </v-card-text>
+          <v-card-text>
+            <v-data-table
+              v-model:items-per-page="itemsPerPage"
+              :headers="headers"
+              :items="desserts"
+              item-value="name"
+            ></v-data-table>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
