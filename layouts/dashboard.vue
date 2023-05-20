@@ -17,18 +17,18 @@
       <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-img class="d-md-none" src="/logo.png" alt="Peakodot" max-width="48" />
       <v-spacer />
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <v-avatar color="grey" v-bind="props" style="cursor: pointer">
-            <v-icon :icon="mdiAccount" />
-          </v-avatar>
-        </template>
-        <v-list density="compact">
+      <!-- <v-menu>
+        <template v-slot:activator="{ props }"> -->
+      <v-avatar color="grey" style="cursor: pointer">
+        <v-icon :icon="mdiAccount" />
+      </v-avatar>
+      <!-- </template> -->
+      <!-- <v-list density="compact">
           <v-list-item density="compact" v-for="(item, i) in items" :key="i">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item>
-        </v-list>
-      </v-menu>
+        </v-list> -->
+      <!-- </v-menu> -->
     </v-app-bar>
 
     <v-main class="bg-grey-lighten-5">
