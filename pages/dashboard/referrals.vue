@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiAccountMultiplePlus" />
-      Referrals
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiAccountMultiplePlus" />
+      <h3 class="font-weight-black text-primary text-h6">Referrals</h3>
+    </div>
 
     <v-row>
       <v-col cols="12" md="7" order="2" order-md="1">
@@ -23,12 +23,6 @@
         </v-card>
       </v-col>
 
-      <!-- <v-col cols="12" md="5" order="1" order-md="2">
-        <dashboard-stats-card title="Total Referrals" :value="`${total_referrals}`" :icon="mdiAccountGroup" />
-        <br />
-        <dashboard-stats-card title="Referral Bonus" :value="`$ ${referral_bonus}`" :icon="mdiCashMultiple" />
-      </v-col> -->
-
       <v-col cols="12" order="3">
         <v-card>
           <v-card-title class="subtitle-1 font-weight-bold"> Referrals History </v-card-title>
@@ -36,7 +30,7 @@
           <v-card-text>
             <v-text-field
               v-model="search"
-              :append-icon="mdiMagnify"
+              :append-inner-icon="mdiMagnify"
               label="Search"
               single-line
               hide-details
@@ -45,17 +39,7 @@
             ></v-text-field>
           </v-card-text>
           <v-card-text>
-            <v-data-table :headers="[{ title: 'Name', key: 'name' }]" :items="[]" :search="search">
-              <!-- <template #[`item.sn`]="{ item }"> {{ referrals.indexOf(item) + 1 }}. </template>
-              <template #[`item.is_verified`]="{ item }">
-                <v-chip small :color="item.is_verified ? 'success' : 'grey lighten-3'">
-                  {{ item.is_verified ? "Verified" : "Unverified" }}
-                </v-chip>
-              </template>
-              <template #[`item.created_at`]="{ item }">
-                {{ formatDate(item.created_at) }}
-              </template> -->
-            </v-data-table>
+            <v-data-table :headers="[{ title: 'Name', key: 'name' }]" :items="[]" :search="search"> </v-data-table>
           </v-card-text>
         </v-card>
       </v-col>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiAccount" />
-      Profile
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiAccount" />
+      <h3 class="font-weight-black text-primary text-h6">Profile</h3>
+    </div>
 
     <v-row>
       <v-col cols="12" md="6">

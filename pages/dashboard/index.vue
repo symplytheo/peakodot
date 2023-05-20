@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="font-weight-black text-primary text-h6 mb-6">
-      <v-icon color="primary" :icon="mdiViewDashboardOutline" />
-      Overview
-    </h3>
+    <div class="d-flex align-center mb-6">
+      <v-icon start size="x-large" color="primary" :icon="mdiViewDashboardOutline" />
+      <h3 class="font-weight-black text-primary text-h6">Overview</h3>
+    </div>
 
     <v-row align="end">
       <v-col cols="12">
@@ -29,8 +29,10 @@
         <v-card>
           <v-card-title>{{ stat.title }}</v-card-title>
           <v-card-text>
-            <p class="text-h5 font-weight-black mb-3">{{  stat.value }}</p>
-            <span class="caption">Updated: <b>{{ stat.updated }}</b></span>
+            <p class="text-h5 font-weight-black mb-3">{{ stat.value }}</p>
+            <span class="caption"
+              >Updated: <b>{{ stat.updated }}</b></span
+            >
           </v-card-text>
           <v-card-actions class="justify-end pt-0">
             <v-btn color="primary" variant="tonal" v-on:click="stat.action">{{ stat.actionText }}</v-btn>
@@ -51,6 +53,12 @@ const stats = [
   { title: "Referral Earnings", value: "$ 34.92", updated: "yesterday", action: () => {}, actionText: "withdraw" },
   { title: "Digital Assets", value: "31 assets", updated: "just now", action: () => {}, actionText: "See all" },
   { title: "Share Earnings", value: "$ 980.50", updated: "3 days ago", action: () => {}, actionText: "Earn more" },
-  { title: "NFT Games Earnings", value: "40 tokens", updated: "3 days ago", action: () => {}, actionText: "Play & win" },
+  {
+    title: "NFT Games Earnings",
+    value: "40 tokens",
+    updated: "3 days ago",
+    action: () => {},
+    actionText: "Play & win",
+  },
 ];
 </script>
