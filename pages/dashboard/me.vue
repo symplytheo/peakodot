@@ -11,7 +11,7 @@
           <v-card-title class="subtitle-1 font-weight-bold"> Update your profile </v-card-title>
           <v-card-text>
             <v-form v-model="isValid.profile" @submit.prevent="updateProfile">
-              <v-row no-gutters justify="center">
+              <v-row justify="center">
                 <v-col cols="12" class="mb-4 text-center">
                   <label for="profilepic">
                     <v-avatar size="120" color="grey" style="cursor: pointer">
@@ -28,17 +28,20 @@
                   <v-text-field v-model="form.name" color="primary" label="Full name" />
                 </v-col>
                 <v-col cols="12">
+                  <v-text-field v-model="form.username" color="primary" label="Username" />
+                </v-col>
+                <v-col cols="12">
                   <v-text-field v-model="form.email" type="email" color="primary" label="Email address" />
                 </v-col>
                 <v-col cols="12">
                   <v-text-field v-model="form.password" color="primary" type="password" label="Password" />
                 </v-col>
-                <v-col cols="12">
+                <!-- <v-col cols="12">
                   <v-text-field v-model="form.coupon" color="primary" label="Coupon code" />
                 </v-col>
                 <v-col cols="12">
                   <v-text-field v-model="form.referral" color="primary" label="Referral ID" />
-                </v-col>
+                </v-col> -->
                 <v-col cols="12">
                   <v-btn type="submit" color="primary" block size="large" flat :loading="loading.profile">
                     Update Profile
@@ -158,7 +161,7 @@ import { mdiAccount, mdiEye, mdiEyeOff } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
 
-const form = ref({ avatar: "", email: "", password: "", name: "", coupon: "", referral: "" });
+const form = ref({ avatar: "", email: "", password: "", name: "", coupon: "", username: '', referral: "" });
 const loading = ref({ profile: false, password: false, plan: false });
 const isValid = ref({ profile: false, password: false, plan: false });
 const password = ref({ old: "", new: "", confirm: "" });
