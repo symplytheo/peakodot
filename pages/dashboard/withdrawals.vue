@@ -78,17 +78,6 @@
             ></v-text-field>
           </v-card-text>
           <v-card-text>
-            <!-- <v-data-table :headers="headers" :items="items" :loading="refreshing" :search="search"> -->
-            <!-- <template #[`item.sn`]="{ item }"> {{ transactions.indexOf(item) + 1 }}. </template> -->
-            <!-- <template #[`item.status`]="{ item }">
-                <v-chip small :color="getColor(item.status)" class="text-capitalize">
-                  {{ item.status }}
-                </v-chip>
-              </template> -->
-            <!-- <template #[`item.created_at`]="{ item }">
-                {{ formatDate(item.created_at) }}
-              </template> -->
-            <!-- </v-data-table> -->
             <v-data-table
               v-model:items-per-page="itemsPerPage"
               :headers="headers"
@@ -121,31 +110,14 @@ import { VDataTable } from "vuetify/labs/VDataTable";
 
 definePageMeta({ layout: "dashboard" });
 
-// const headers = [
-//   // { title: "S/N", key: "sn", filterable: false, sortable: false },
-//   // { title: "REFERENCE ID", key: "start", sortable: false, value: "reference_id" },
-//   // { title: "MEDIUM", key: "medium" },
-//   // { title: "AMOUNT ($)", key: "amount" },
-//   // { title: "STATUS", key: "status" },
-//   // { title: "DATE", key: "created_at", filterable: false },
-//   { title: "Name", key: "name", value: "name" },
-//   { title: "Age", key: "age", value: "age" },
-// ];
-
-// const items = [
-//   { id: 1, name: "John Doe", age: 26 },
-//   { id: 2, name: "Janet Jackson", age: 23 },
-// ];
-
-const itemsPerPage = ref(5);
+const itemsPerPage = ref(10);
 
 const headers = [
-  { title: "Dessert (100g serving)", key: "name" },
-  { title: "Calories", key: "calories" },
-  { title: "Fat (g)", key: "fat" },
-  { title: "Carbs (g)", key: "carbs" },
-  // { title: "Protein (g)", align: "end", key: "protein" },
-  // { title: "Iron (%)", align: "end", key: "iron" },
+  { title: "Reference ID", key: "name" },
+  { title: "Medium", key: "calories" },
+  { title: "Amount", key: "fat" },
+  { title: "Status", key: "status" },
+  { title: "Date", key: "date" },
 ];
 
 const desserts = [
@@ -153,7 +125,7 @@ const desserts = [
     name: "Frozen Yogurt",
     calories: 159,
     fat: 6.0,
-    carbs: 24,
+    status: 'Success',
     protein: 4.0,
     iron: "1",
   },
@@ -161,7 +133,7 @@ const desserts = [
     name: "Jelly bean",
     calories: 375,
     fat: 0.0,
-    carbs: 94,
+    status: 'Failed',
     protein: 0.0,
     iron: "0",
   },
@@ -169,7 +141,7 @@ const desserts = [
     name: "KitKat",
     calories: 518,
     fat: 26.0,
-    carbs: 65,
+    status: 'Pending',
     protein: 7,
     iron: "6",
   },
@@ -177,7 +149,7 @@ const desserts = [
     name: "Eclair",
     calories: 262,
     fat: 16.0,
-    carbs: 23,
+    status: 'Success',
     protein: 6.0,
     iron: "7",
   },
@@ -185,7 +157,7 @@ const desserts = [
     name: "Gingerbread",
     calories: 356,
     fat: 16.0,
-    carbs: 49,
+    status: 'Success',
     protein: 3.9,
     iron: "16",
   },
@@ -193,7 +165,7 @@ const desserts = [
     name: "Ice cream sandwich",
     calories: 237,
     fat: 9.0,
-    carbs: 37,
+    status: 'Success',
     protein: 4.3,
     iron: "1",
   },
@@ -201,7 +173,7 @@ const desserts = [
     name: "Lollipop",
     calories: 392,
     fat: 0.2,
-    carbs: 98,
+    status: 'Success',
     protein: 0,
     iron: "2",
   },
@@ -209,7 +181,7 @@ const desserts = [
     name: "Cupcake",
     calories: 305,
     fat: 3.7,
-    carbs: 67,
+    status: 'Failed',
     protein: 4.3,
     iron: "8",
   },
@@ -217,7 +189,7 @@ const desserts = [
     name: "Honeycomb",
     calories: 408,
     fat: 3.2,
-    carbs: 87,
+    status: 'Success',
     protein: 6.5,
     iron: "45",
   },
@@ -225,13 +197,13 @@ const desserts = [
     name: "Donut",
     calories: 452,
     fat: 25.0,
-    carbs: 51,
+    status: 'Failed',
     protein: 4.9,
     iron: "22",
   },
 ];
 
-const isValid = ref(false);
+const isValid = ref(false); 
 const loading = ref(false);
 const refreshing = ref(false);
 const success = ref(false);
