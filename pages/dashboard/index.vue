@@ -8,7 +8,7 @@
     <v-row align="end">
       <v-col cols="12">
         <h4 class="text-h5">Good evening, <b>John Brown</b></h4>
-        <p class="text-medium-emphasis">What would you like to do?</p>
+        <p class="text-medium-emphasis">You're currently on the <b>Basic</b> package</p>
       </v-col>
       <v-col cols="12" md="4">
         <v-card>
@@ -47,8 +47,8 @@ import { mdiFinance, mdiViewDashboardOutline } from "@mdi/js";
 definePageMeta({ layout: "dashboard" });
 
 const stats = [
-  { title: "Minting", value: "40 tokens", updated: "4 hours ago", action: () => {}, actionText: "Mint now" },
-  { title: "Referrals", value: "50 persons", updated: "yesterday", action: () => {}, actionText: "View all" },
+  { title: "Minting", value: "$ 649.75", updated: "4 hours ago", action: () => {}, actionText: "Mint now" },
+  { title: "Referral Earnings", value: "$ 34.92", updated: "yesterday", action: () => {}, actionText: "withdraw" },
   { title: "Digital Assets", value: "31 assets", updated: "just now", action: () => {}, actionText: "See all" },
   { title: "Share Earnings", value: "$ 980.50", updated: "3 days ago", action: () => {}, actionText: "Earn more" },
   { title: "NFT Games Earnings", value: "40 tokens", updated: "3 days ago", action: () => {}, actionText: "Play & win" },

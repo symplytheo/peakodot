@@ -5,11 +5,51 @@
       Minting Bot
     </h3>
 
-    <v-card flat height="50vh">
-      <v-row class="fill-height text-center" justify="center" align="center">
-        <h3 class="text-h4 font-weight-black">Coming Soon</h3>
-      </v-row>
-    </v-card>
+    <v-row class="mb-8">
+      <v-col cols="12" md="7">
+        <v-card class="text-center">
+          <v-card-title class="text-left">Daily Mint</v-card-title>
+          <div class="text-subtitle-2">
+            <p>You are on <b>BASIC</b> package</p>
+            <p>You will earn <b>$ 0.65</b> per mint</p>
+            <p>You can only mint <b>Once</b> per day</p>
+          </div>
+          <v-card-text>
+            <v-progress-circular :rotate="360" :size="180" :width="25" :model-value="progress" color="primary">
+              <v-icon v-if="minted" :icon="mdiCheck" size="60" />
+              <span v-else class="text-h6 font-weight-bold"> {{ progress }} % </span>
+            </v-progress-circular>
+          </v-card-text>
+          <p v-if="minting" class="text-error text-subtitle-2">
+            Minting in Progress! <br />
+            Do not refresh or leave this page to avoid error
+          </p>
+          <v-card-actions class="py-6 px-6">
+            <v-btn variant="flat" color="primary" block :disabled="minted || minting" size="large" @click="handleMint">
+              Mint now
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="5">
+        <v-card class="mb-6">
+          <v-card-title>Today's Mint</v-card-title>
+          <v-card-text>
+            <p class="text-h5 font-weight-black mb-3">$ {{ minted ? 0.65 : 0.00 }}</p>
+            <span class="caption">
+              Minted: <b>{{ minted ? "Just now" : "Nil" }}</b>
+            </span>
+          </v-card-text>
+        </v-card>
+        <v-card>
+          <v-card-title>Last Mint</v-card-title>
+          <v-card-text>
+            <p class="text-h5 font-weight-black mb-3">$ 0.65</p>
+            <span class="caption">Mint Date: <b>May 13, 2023 8:05PM</b></span>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <v-container>
       <v-row>
@@ -34,7 +74,7 @@
                 :headers="headers"
                 :items="desserts"
                 item-value="name"
-                class="elevation-1"
+                class="elevation-0"
               ></v-data-table>
             </v-card-text>
           </v-card>
@@ -45,12 +85,29 @@
 </template>
 
 <script setup lang="ts">
-import { mdiRobotOutline, mdiMagnify } from "@mdi/js";
+import { VDataTable } from "vuetify/labs/VDataTable";
+import { mdiRobotOutline, mdiMagnify, mdiCheck } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
 
 const itemsPerPage = ref(5);
-const search = ref('');
+const search = ref("");
+const progress = ref(0);
+const minted = ref(false);
+const minting = ref(false);
+const timer = ref();
+
+const handleMint = () => {
+  minting.value = true;
+  timer.value = setInterval(() => {
+    if (progress.value === 100) {
+      minting.value = false;
+      minted.value = true;
+      clearInterval(timer.value);
+    }
+    progress.value += 5;
+  }, 1500);
+};
 
 const headers = [
   { title: "Dessert (100g serving)", key: "name" },
