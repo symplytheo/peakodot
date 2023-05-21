@@ -8,7 +8,7 @@
     <v-row align="end">
       <v-col cols="12">
         <h4 class="text-h5">
-          Good evening, <b class="text-capitalize">{{ user.firstname + " " + user.lastname }}</b>
+          Welcome, <b class="text-capitalize">{{ user.firstname + " " + user.lastname }}</b>
         </h4>
         <p class="text-medium-emphasis">
           You're currently on the <b>{{ user.package }}</b> package

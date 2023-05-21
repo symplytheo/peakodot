@@ -25,16 +25,16 @@
                   <input id="profilepic" type="file" accept="image/*" hidden @change="previewImage" />
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field v-model="form.name" color="primary" label="Full name" />
+                  <v-text-field v-model="form.firstname" color="primary" label="Full name" />
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field v-model="form.lastname" color="primary" label="Last name" />
                 </v-col>
                 <v-col cols="12">
                   <v-text-field v-model="form.username" color="primary" label="Username" />
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field v-model="form.email" type="email" color="primary" label="Email address" />
-                </v-col>
-                <v-col cols="12">
-                  <v-text-field v-model="form.password" color="primary" type="password" label="Password" />
+                  <v-text-field v-model="form.email" type="email" readonly color="primary" label="Email address" />
                 </v-col>
                 <v-col cols="12">
                   <v-btn type="submit" color="primary" block size="large" flat :loading="loading.profile">
@@ -56,15 +56,14 @@
                 <v-col cols="12">
                   <p>
                     You're currently on a
-                    <b>Basic Package</b>. Your ROI is
-                    <b>1.5%</b>
+                    <b class="text-capitalize">{{ $store.user.package }} Package</b>. Your daily gain is
+                    <b>${{ $store.user.package === "premium" ? 1.0 : 0.65 }}</b> per mint
                   </p>
-                  <p>Upgrade your subscription plan to a higher one to earn more</p>
                 </v-col>
                 <v-col cols="12">
                   <v-select
                     v-model="newPlan"
-                    :items="['Basic', 'Premium']"
+                    :items="['basic', 'premium']"
                     :rules="[(v) => !!v || 'Select a new plan']"
                     required
                   />
@@ -79,7 +78,7 @@
                     :loading="loading.plan"
                     :disabled="!isValid.plan"
                   >
-                    Upgrade
+                    Change
                   </v-btn>
                 </v-col>
               </v-row>
@@ -155,7 +154,9 @@ import { mdiAccount, mdiEye, mdiEyeOff } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
 
-const form = ref({ avatar: "", email: "", password: "", name: "", coupon: "", username: '', referral: "" });
+const { $store } = useNuxtApp();
+
+const form = ref({ avatar: "", email: "", firstname: "", lastname: "", username: "" });
 const loading = ref({ profile: false, password: false, plan: false });
 const isValid = ref({ profile: false, password: false, plan: false });
 const password = ref({ old: "", new: "", confirm: "" });
@@ -166,4 +167,10 @@ const previewImage = () => {};
 const updateProfile = () => {};
 const changePassword = () => {};
 const upgradePlan = () => {};
+
+onMounted(() => {
+  const { firstname, lastname, username, email } = $store.user;
+  form.value = { firstname, lastname, username, email, avatar: "" };
+  newPlan.value = $store.user.package;
+});
 </script>

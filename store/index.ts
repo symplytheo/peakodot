@@ -3,7 +3,15 @@ import { defineStore } from "pinia";
 export const useMainStore = defineStore("main", {
   state: () => ({
     counter: 0,
-    user: { firstname: "", lastname: "", package: "", balance: { USD: 0, USDC: 0 } },
+    user: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      package: "",
+      is_vendor: false,
+      balance: { USD: 0, USDC: 0 },
+    },
     isLoggedIn: false,
   }),
   actions: {
