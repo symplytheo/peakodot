@@ -42,7 +42,6 @@ class ApiRequests {
 
   async register(payload: any) {
     try {
-      console.log({ payload });
       const { data } = await this.instance.post("/user/create-user", payload);
       return data;
     } catch (err) {
