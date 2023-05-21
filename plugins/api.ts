@@ -53,7 +53,7 @@ class ApiRequests {
 
   async getProfile() {
     try {
-      const { data } = await this.instance.get("/user");
+      const { data } = await this.instance.get("/user/current-user");
       return data;
     } catch (err) {
       this.processError(err);
