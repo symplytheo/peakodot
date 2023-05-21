@@ -5,27 +5,27 @@
       <h3 class="font-weight-black text-primary text-h6">Overview</h3>
     </div>
 
-    <div class="pa-4">
-      {{ $store.user }}
-    </div>
-
     <v-row align="end">
       <v-col cols="12">
-        <h4 class="text-h5">Good evening, <b>John Brown</b></h4>
-        <p class="text-medium-emphasis">You're currently on the <b>Basic</b> package</p>
+        <h4 class="text-h5">
+          Good evening, <b class="text-capitalize">{{ user.firstname + " " + user.lastname }}</b>
+        </h4>
+        <p class="text-medium-emphasis">
+          You're currently on the <b>{{ user.package }}</b> package
+        </p>
       </v-col>
       <v-col cols="12" md="4">
         <v-card>
           <v-card-title>Total Earnings</v-card-title>
           <v-card-text>
-            <p class="text-h5 font-weight-black mt-2 mb-4">$ 4,069.56</p>
+            <p class="text-h5 font-weight-black mt-2 mb-4">$ {{ Number(user.balance.USD).toFixed(2) }}</p>
             <div class="d-flex justify-space-between align-end">
               <v-chip color="success" label text-color="white"> <v-icon start :icon="mdiFinance" /> 25% </v-chip>
               <span class="caption">Updated: <b>2 days ago</b></span>
             </div>
           </v-card-text>
           <v-card-actions class="justify-end pt-0">
-            <v-btn color="primary" variant="flat">Withdraw</v-btn>
+            <v-btn color="primary" variant="flat" to="/dashboard/withdrawals">Withdraw</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -53,15 +53,24 @@ import { mdiFinance, mdiViewDashboardOutline } from "@mdi/js";
 definePageMeta({ layout: "dashboard" });
 
 const { $store } = useNuxtApp();
+const user = $store.user;
 
 const stats = [
-  { title: "Minting", value: "$ 649.75", updated: "4 hours ago", action: () => {}, actionText: "Mint now" },
-  { title: "Referral Earnings", value: "$ 34.92", updated: "yesterday", action: () => {}, actionText: "withdraw" },
-  { title: "Digital Assets", value: "31 assets", updated: "just now", action: () => {}, actionText: "See all" },
-  { title: "Share Earnings", value: "$ 980.50", updated: "3 days ago", action: () => {}, actionText: "Earn more" },
+  {
+    title: "Minting",
+    value: "$ 0.00",
+    updated: "4 hours ago",
+    action: () => {
+      navigateTo("/dashboard/minting");
+    },
+    actionText: "Mint now",
+  },
+  { title: "Referral Earnings", value: "$ 0.00", updated: "yesterday", action: () => {}, actionText: "withdraw" },
+  { title: "Digital Assets", value: "0 assets", updated: "just now", action: () => {}, actionText: "See all" },
+  { title: "Share Earnings", value: "$ 0.00", updated: "3 days ago", action: () => {}, actionText: "Earn more" },
   {
     title: "NFT Games Earnings",
-    value: "40 tokens",
+    value: "0 tokens",
     updated: "3 days ago",
     action: () => {},
     actionText: "Play & win",
