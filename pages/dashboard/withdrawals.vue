@@ -9,7 +9,7 @@
       <v-col cols="12" md="7" order="2" order-md="1">
         <v-card>
           <v-card-title class="subtitle-1 font-weight-bold"> Request Withdrawal </v-card-title>
-          <v-card-subtitle> Minimum withdrawal amount is <b>$50</b> </v-card-subtitle>
+          <v-card-subtitle> Minimum withdrawal amount is <b>$10</b> </v-card-subtitle>
           <v-card-text>
             <v-form ref="form" v-model="isValid" @submit.prevent="handleWithdrawal">
               <div>
@@ -22,7 +22,7 @@
                   prefix="$"
                   :rules="[
                     (v) => !!v || 'Please enter an amount in US Dollar',
-                    (v) => v > 49 || 'Minimum withdrawal is $50',
+                    (v) => v > 9 || 'Minimum withdrawal is $10',
                   ]"
                 />
               </div>
@@ -31,7 +31,7 @@
                   v-model="form.medium"
                   label="Method"
                   color="primary"
-                  :items="['BTC', 'ETH']"
+                  :items="['USDT', 'NGN']"
                   :rules="[(v) => !!v || 'Please select a method of payment']"
                 />
               </div>

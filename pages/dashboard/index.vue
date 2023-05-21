@@ -5,6 +5,10 @@
       <h3 class="font-weight-black text-primary text-h6">Overview</h3>
     </div>
 
+    <div class="pa-4">
+      {{ $store.user }}
+    </div>
+
     <v-row align="end">
       <v-col cols="12">
         <h4 class="text-h5">Good evening, <b>John Brown</b></h4>
@@ -30,9 +34,9 @@
           <v-card-title>{{ stat.title }}</v-card-title>
           <v-card-text>
             <p class="text-h5 font-weight-black mb-3">{{ stat.value }}</p>
-            <span class="caption"
-              >Updated: <b>{{ stat.updated }}</b></span
-            >
+            <span class="caption">
+              Updated: <b>{{ stat.updated }}</b>
+            </span>
           </v-card-text>
           <v-card-actions class="justify-end pt-0">
             <v-btn color="primary" variant="tonal" v-on:click="stat.action">{{ stat.actionText }}</v-btn>
@@ -47,6 +51,8 @@
 import { mdiFinance, mdiViewDashboardOutline } from "@mdi/js";
 
 definePageMeta({ layout: "dashboard" });
+
+const { $store } = useNuxtApp();
 
 const stats = [
   { title: "Minting", value: "$ 649.75", updated: "4 hours ago", action: () => {}, actionText: "Mint now" },

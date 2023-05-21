@@ -3,7 +3,8 @@ import { defineStore } from "pinia";
 export const useMainStore = defineStore("main", {
   state: () => ({
     counter: 0,
-    snackbar: { show: false, variant: "loading", text: "Processing..." },
+    user: {},
+    isLoggedIn: false,
   }),
   actions: {
     increment() {
@@ -12,9 +13,9 @@ export const useMainStore = defineStore("main", {
     increaseBy(payload: number) {
       this.counter += payload;
     },
-    
-    closeSnackbar() {
-      this.snackbar.show = false;
+    setUser(payload: any) {
+      this.user = payload;
+      this.isLoggedIn = !!Object.entries(payload).length;
     },
   },
 });

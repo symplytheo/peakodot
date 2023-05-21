@@ -2,7 +2,7 @@
   <v-card class="py-2 px-4">
     <v-card-title class="font-weight-black text-center pb-0">Welcome back</v-card-title>
     <v-card-subtitle class="text-center">Login to continue</v-card-subtitle>
-    <v-card-text>
+    <v-card-text class="px-0 px-md-3">
       <v-form @submit.prevent="handleSubmit">
         <v-row dense>
           <v-col cols="12">
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: "auth" });
-const { $api, $toast } = useNuxtApp();
+const { $api, $toast, $store } = useNuxtApp();
 
 const form = ref({ email: "", password: "" });
 const loading = ref(false);
@@ -35,7 +35,12 @@ const handleSubmit = async () => {
   try {
     loading.value = true;
     const data = await $api.login(form.value);
-    $toast.success('User authenticated successfully')
+    localStorage.setItem("authtoken", data.access_token);
+    $api.setToken(data.access_token);
+    $toast.success("User authenticated successfully");
+    const me = await $api.getProfile()
+    $store.setUser(me)
+    navigateTo("/dashboard");
   } catch (error) {
     console.log(error);
   } finally {

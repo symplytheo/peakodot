@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
+import { Pinia } from "pinia";
 import ErrorHandler from "~/lib/errorhandler";
+import { useMainStore } from "~/store";
 import { useToastStore } from "~/store/toast";
 
 class ApiRequests {
@@ -19,13 +21,17 @@ class ApiRequests {
     this.toast.error(text);
   }
 
+  // set token for all requests
+  setToken(token: string) {
+    this.instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
+
   // ================
   // ALL REQUESTS
   // ================
 
   async login(payload: any) {
     try {
-      console.log({ payload });
       const { data } = await this.instance.post("/login", payload);
       return data;
     } catch (err) {
@@ -37,7 +43,7 @@ class ApiRequests {
   async register(payload: any) {
     try {
       console.log({ payload });
-      const { data } = await this.instance.post("/user", payload);
+      const { data } = await this.instance.post("/user/create-user", payload);
       return data;
     } catch (err) {
       this.processError(err);
@@ -61,8 +67,10 @@ class ApiRequests {
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const Axios = axios.create({ baseURL: nuxtApp.$config.public.apiBase });
+export default defineNuxtPlugin(({ $pinia, $config }) => {
+  const Axios = axios.create({ baseURL: $config.public.apiBase });
+  const store = useMainStore($pinia as Pinia);
+  store.increaseBy(5);
   const api = new ApiRequests(Axios);
   return {
     provide: { api },
