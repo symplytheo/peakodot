@@ -5,7 +5,7 @@ export const useToastStore = defineStore("toast", {
     show: false,
     variant: "loading",
     text: "Processing...",
-    timeout: 5000,
+    timeout: 7000,
   }),
   actions: {
     success(text: string) {

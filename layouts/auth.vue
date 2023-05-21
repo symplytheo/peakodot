@@ -3,7 +3,7 @@
     <v-sheet min-height="100vh" color="green-lighten-5">
       <v-container class="fill-height">
         <v-row justify="center" align="center" class="fill-height" no-gutters>
-          <v-col cols="12" md="6" lg="5">
+          <v-col cols="12" sm="8" md="6" lg="5">
             <div class="d-flex justify-center mb-2">
               <nuxt-link class="d-inline-flex align-center text-decoration-none" to="/">
                 <v-img src="/logo.png" alt="Logo" width="48" />

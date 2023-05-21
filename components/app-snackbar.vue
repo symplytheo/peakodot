@@ -3,8 +3,8 @@
     v-model="$toast.show"
     :color="$toast.variant === 'loading' ? 'black' : $toast.variant"
     variant="tonal"
-    class="mb-6"
-    location="bottom right"
+    class="my-6"
+    location="top right"
   >
     <div class="d-flex align-center">
       <v-progress-circular v-if="$toast.variant === 'loading'" indeterminate size="24" class="mr-2" />

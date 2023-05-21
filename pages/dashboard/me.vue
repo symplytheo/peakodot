@@ -36,12 +36,6 @@
                 <v-col cols="12">
                   <v-text-field v-model="form.password" color="primary" type="password" label="Password" />
                 </v-col>
-                <!-- <v-col cols="12">
-                  <v-text-field v-model="form.coupon" color="primary" label="Coupon code" />
-                </v-col>
-                <v-col cols="12">
-                  <v-text-field v-model="form.referral" color="primary" label="Referral ID" />
-                </v-col> -->
                 <v-col cols="12">
                   <v-btn type="submit" color="primary" block size="large" flat :loading="loading.profile">
                     Update Profile

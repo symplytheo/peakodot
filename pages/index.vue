@@ -61,7 +61,7 @@ const seconds = ref(0);
 
 onMounted(() => {
   // Set the date we're counting down to
-  const countDownDate = new Date("May 20, 2023 08:00:00").getTime();
+  const countDownDate = new Date("May 20, 2023 15:00:00").getTime();
   // Update the count down every 1 second
   const x = setInterval(function () {
     // Get today's date and time
@@ -76,6 +76,7 @@ onMounted(() => {
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
+      days.value = hours.value = minutes.value =  seconds.value = 0 
     }
   }, 1000);
 });
