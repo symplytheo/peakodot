@@ -18,7 +18,7 @@
             <v-text-field v-model="form.coupon_code" color="primary" label="Coupon code" />
           </v-col>
           <v-col cols="6">
-            <v-text-field v-model="form.referral_username" color="primary" label="Referrer ID" />
+            <v-text-field v-model="form.referral_username" color="primary" label="Referrer Username" />
           </v-col>
           <v-col cols="12">
             <v-text-field v-model="form.email" type="email" color="primary" label="Email address" />
@@ -55,9 +55,16 @@ const loading = ref(false);
 const handleSubmit = async () => {
   try {
     loading.value = true;
-    const data = await $api.register(form.value);
-    $toast.success(data.detail || 'Account created successfully, Login!')
-    navigateTo('/login')
+    let obj;
+    if (!form.value.referral_username) {
+      const { referral_username, ...others } = form.value;
+      obj = others;
+    } else {
+      obj = form.value;
+    }
+    const data = await $api.register(obj);
+    $toast.success(data.detail || "Account created successfully, Login!");
+    navigateTo("/login");
   } catch (error) {
     console.log(error);
   } finally {
