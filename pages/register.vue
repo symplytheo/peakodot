@@ -1,7 +1,6 @@
 <template>
   <v-card class="py-2 px-4">
     <v-card-title class="font-weight-black text-center">Create Account</v-card-title>
-    <!-- <v-card-subtitle class="text-center">Login to continue</v-card-subtitle> -->
     <v-card-text class="px-0 px-md-3">
       <v-form @submit.prevent="handleSubmit">
         <v-row dense>
@@ -39,8 +38,6 @@
 <script setup>
 definePageMeta({ layout: "auth" });
 
-const { $api, $toast } = useNuxtApp();
-
 const form = ref({
   email: "",
   password: "",
@@ -52,23 +49,5 @@ const form = ref({
 });
 const loading = ref(false);
 
-const handleSubmit = async () => {
-  try {
-    loading.value = true;
-    let obj;
-    if (!form.value.referral_username) {
-      const { referral_username, ...others } = form.value;
-      obj = others;
-    } else {
-      obj = form.value;
-    }
-    const data = await $api.register(obj);
-    $toast.success(data.detail || "Account created successfully, Login!");
-    navigateTo("/login");
-  } catch (error) {
-    console.log(error);
-  } finally {
-    loading.value = false;
-  }
-};
+const handleSubmit = () => {};
 </script>

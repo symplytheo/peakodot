@@ -26,25 +26,9 @@
 
 <script setup lang="ts">
 definePageMeta({ layout: "auth" });
-const { $api, $toast, $store } = useNuxtApp();
 
 const form = ref({ email: "", password: "" });
 const loading = ref(false);
 
-const handleSubmit = async () => {
-  try {
-    loading.value = true;
-    const data = await $api.login(form.value);
-    localStorage.setItem("authtoken", data.access_token);
-    $api.setToken(data.access_token);
-    $toast.success("User authenticated successfully");
-    const me = await $api.getProfile()
-    $store.setUser(me)
-    navigateTo("/dashboard");
-  } catch (error) {
-    console.log(error);
-  } finally {
-    loading.value = false;
-  }
-};
+const handleSubmit = () => {};
 </script>

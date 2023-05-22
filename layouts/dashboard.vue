@@ -17,21 +17,10 @@
       <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-img class="d-md-none" src="/logo.png" alt="Peakodot" max-width="48" />
       <v-spacer />
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <v-avatar color="grey" v-bind="props" style="cursor: pointer">
-            <v-icon :icon="mdiAccount" />
-          </v-avatar>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title class="text-capitalize">{{ user.firstname + " " + user.lastname }}</v-list-item-title>
-            <v-list-item-subtitle class="text-capitalize mt-2">
-              {{ `${user.package} - ${user.is_vendor ? "vendor" : "user"}` }}
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+
+      <v-avatar color="grey" style="cursor: pointer">
+        <v-icon :icon="mdiAccount" />
+      </v-avatar>
     </v-app-bar>
 
     <v-main class="bg-grey-lighten-5">
@@ -39,9 +28,6 @@
         <slot />
       </v-container>
     </v-main>
-
-    <!--  -->
-    <app-snackbar />
   </v-app>
 </template>
 
@@ -62,9 +48,6 @@ const display = useDisplay();
 
 const val = display.smAndDown ? false : true;
 const drawer = ref(val);
-
-const { $store } = useNuxtApp();
-const user = $store.user;
 
 const items = [
   { title: "Overview", props: { prependIcon: mdiViewDashboardOutline, to: "/dashboard" } },
